@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <textarea id="txt" rows="10" cols="80">
+        [
+            {"name": "Saka", "age": 22, "city": "London"},
+            {"name": "Smith Row", "age": 21, "city": "London"}
+        ]
+    </textarea>
+    <input type="button" value="submit" onclick=exportWorkSheet()>
+
+    <script>
+        function callText() {
+            let text = document.getElementById("txt").value;
+            alert(text);
+        }
+
+        function exportWorkSheet() {
+            let jsonObj = document.getElementById("txt").value;
+            var myFile = "Text.xlsx";
+            var myWorksheet = XLSX.utils.json_to_sheet(jsonObj);
+            var myWorkBook = XLSX.utils.book_new();
+            XLSX.utils.book_append_sheet(myWorkBook, myWorksheet, "myWorkSheet");
+            XLSX.writeFile(myWorkBook, myFile);
+        }
+      
+    </script>
+</body>
+</html>
